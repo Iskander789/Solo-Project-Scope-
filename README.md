@@ -1,5 +1,3 @@
-# Solo-Project-Scope-
-
 # Movie Club App (Name TBD)
 
 The Movie Club App is designed to bring movie enthusiasts together by allowing users to share their reactions and reviews of films they agree to watch, similar to a book club. This app facilitates the creation of a virtual movie club where members can discuss movies, rate them, and leave comments. The app uses modern web development technologies and follows best practices for a beginner programmer's project.
