@@ -1,13 +1,13 @@
-# Movie Club App (Name TBD)
-
-The Movie Club App is designed to bring movie enthusiasts together by allowing users to share their reactions and reviews of films they agree to watch, similar to a book club. This app facilitates the creation of a virtual movie club where members can discuss movies, rate them, and leave comments. The app uses modern web development technologies and follows best practices for a new programmer's project.
+# Movie Club App
 
 ## Objectives
 
 - Allow users to create and join movie clubs.
-- Enable members to propose and vote on movies to watch.
-- Provide a platform for members to post reviews and discuss movies.
-- Implement a user-friendly interface for seamless interaction.
+- Limit clubs to a maximum of four members to encourage in-depth discussions.
+- Schedule regular movie viewings every four weeks.
+- Facilitate movie discussions and ratings on a message board.
+- Integrate with The Movie Database (TMDb) to fetch movie details.
+- Implement email reminders for scheduled movie viewings and discussions.
 
 ## Dependencies
 
@@ -25,109 +25,136 @@ The Movie Club App is designed to bring movie enthusiasts together by allowing u
 
 - `express`: ^4.18.2
 - `pg`: ^8.2.1
+
+### Middleware
+
 - `axios`: ^0.21.1
 
-### Development Tools
+### Build Tool
 
-- `@vitejs/plugin-react`: ^4.2.1
-- `cypress`: ^13.6.0
-- `nodemon`: ^2.0.4
-- `start-server-and-test`: ^2.0.3
 - `vite`: ^5.0.10
 
-## Features
+## Core Features
 
-### User Authentication
+1. **User Authentication**
+   - **Registration:** Users can create an account.
+   - **Login:** Users can log in to their account.
+   - **Authorization:** Access to clubs and movie discussions is restricted to logged-in users.
 
-- Sign up and login functionality.
-- Password recovery.
+2. **Club Management**
+   - **Create Club:** Users can create a new club and invite up to three other members.
+   - **Join Club:** Users can join existing clubs.
 
-### Movie Club Management
+3. **Movie Selection and Scheduling**
+   - **Movie Selector Rotation:** The person who creates the club selects the first movie. The selector role rotates through the group.
+   - **Movie Database Integration:** Integration with TMDb to fetch and display movie details.
 
-- Create, join, and leave movie clubs.
-- Invite users to clubs.
+4. **Discussion and Rating**
+   - **Message Board:** A discussion board for members to discuss the movie.
+   - **Rating System:** Members can rate the movie after watching it.
 
-### Movie Proposals and Voting
+5. **Notifications**
+   - **Email Reminders:** Schedule function to send email reminders for movie watching and discussion deadlines.
 
-- Propose movies for the club to watch.
-- Vote on proposed movies.
-- Schedule movie watching events.
+## Stretch Goals
 
-### Movie Reviews and Discussions
+1. **Advanced Scheduling**
+   - **Calendar Integration:** Integration with Google Calendar for scheduling movie nights and discussions.
+   - **Push Notifications:** In-app notifications for upcoming movie nights and discussion deadlines.
 
-- Post reviews and rate movies.
-- Comment on reviews and participate in discussions.
+2. **Enhanced User Interaction**
+   - **Private Messaging:** Direct messaging between club members.
+   - **Polls and Surveys:** Create polls for future movie suggestions or club decisions.
+   - **Achievements and Badges:** Gamification elements for active participation.
 
-### User Profile
+3. **Mobile App**
+   - **React Native Version:** Develop a mobile version of the app for iOS and Android.
 
-- View and edit user profiles.
-- Track watched movies and ratings.
+4. **Additional Features**
+   - **Resource Sharing:** Share links, articles, and other resources related to the movie.
+   - **Activity Feed:** A feed displaying recent activities and updates within the club.
+   - **Public/Private Clubs:** Option to make clubs public or private.
 
-### Notifications
+## Wireframes
+(To be added)
+- **Login/Registration Page:**
+  - Features: User registration form, login form, forgot password option.
+- **Dashboard:**
+  - Features: List of joined clubs, option to create a new club, notifications.
+- **Club Page:**
+  - Features: Club details, list of members, current movie details, discussion board.
+- **Movie Selection Page:**
+  - Features: Movie search, display movie details, select movie button.
+- **Discussion Page:**
+  - Features: Discussion threads, reply option, rating system.
 
-- Notify users of new movie proposals, votes, and comments.
+## Entity Relationship Diagram (ERD)
+(To be added)
+- **User Table:**
+  - id (Primary Key)
+  - username
+  - email
+  - password (hashed)
+- **Club Table:**
+  - id (Primary Key)
+  - name
+  - creator_id (Foreign Key)
+- **Membership Table:**
+  - user_id (Foreign Key)
+  - club_id (Foreign Key)
+- **Movie Table:**
+  - id (Primary Key)
+  - tmdb_id
+  - title
+  - description
+- **Discussion Table:**
+  - id (Primary Key)
+  - club_id (Foreign Key)
+  - user_id (Foreign Key)
+  - movie_id (Foreign Key)
+  - content
+  - created_at
+- **Rating Table:**
+  - id (Primary Key)
+  - user_id (Foreign Key)
+  - movie_id (Foreign Key)
+  - rating
+  - created_at
 
-## Technical Stack
+## Feature Descriptions
+- **User Authentication:**
+  - Users can register with their email and password. Passwords are hashed for security. Logged-in users can create or join clubs and participate in discussions.
+  
+- **Club Management:**
+  - Users can create a new club by providing a club name. The user who creates the club becomes the first movie selector. Clubs are limited to four members to ensure manageable discussions. Users can search for and join existing clubs until the membership limit is reached.
 
-### Frontend
+- **Movie Selection and Scheduling:**
+  - The first movie is selected by the club creator. Subsequent selections rotate among club members. Integration with The Movie Database (TMDb) allows users to search for movies and fetch details like title, description, and poster. Each movie viewing is scheduled to occur every four weeks, with automatic reminders sent to all club members.
 
-- React for building the user interface.
-- Redux for state management.
-- React Router for navigation.
-- Axios for making HTTP requests.
+- **Discussion and Rating:**
+  - After watching the selected movie, members can discuss it on the club’s message board. Each discussion thread is tied to a specific movie. Members can post comments and replies, and rate the movie on a scale of 1 to 5 stars. Ratings are aggregated to provide an average club rating for each movie.
 
-### Backend
+- **Notifications:**
+  - Email reminders are sent out to members before the scheduled movie viewing and discussion deadlines. This feature ensures that members are reminded of upcoming events without having to manually check the app.
 
-- Express.js for handling server-side logic.
-- PostgreSQL for database management.
+## Stretch Goals
 
-### Development
+1. **Advanced Scheduling:**
+   - **Calendar Integration:** Allow users to sync movie nights and discussions with their Google Calendar, ensuring they receive reminders and notifications on their preferred calendar app.
+   - **Push Notifications:** Implement in-app notifications to alert users of upcoming events, new messages on the discussion board, and other important updates.
 
-- Vite for build tool and development server.
-- Cypress for end-to-end testing.
-- Nodemon for automatically restarting the server.
-- Vitest for unit testing.
+2. **Enhanced User Interaction:**
+   - **Private Messaging:** Enable direct messaging between club members for private discussions and planning.
+   - **Polls and Surveys:** Allow club members to create polls for suggesting future movies or making club-related decisions.
+   - **Achievements and Badges:** Introduce gamification by awarding badges and achievements for milestones such as consistent participation, hosting movie nights, and providing insightful reviews.
 
-## Architecture
+3. **Mobile App:**
+   - **React Native Version:** Develop a mobile app using React Native, allowing users to access the Movie Club app on both iOS and Android devices. The mobile app will provide the same core features as the web app, ensuring a seamless experience across platforms.
 
-### Client-Server Communication
+4. **Additional Features:**
+   - **Resource Sharing:** Provide a space for members to share links, articles, and other resources related to the movies they watch.
+   - **Activity Feed:** Implement a feed displaying recent activities within the club, such as new discussions, ratings, and movie selections.
+   - **Public/Private Clubs:** Give users the option to make their clubs public (open to anyone) or private (invitation-only), providing more flexibility in how they manage their movie clubs.
 
-- RESTful API endpoints using Express.
-- Client-side makes API calls using Axios.
-
-### State Management
-
-- Global state managed with Redux.
-- Side effects handled with Redux Saga.
-
-## Development Workflow
-
-### Set up the server
-
-1. Create routes, controllers, and models.
-2. Set up PostgreSQL database and configure connection.
-
-### Build the frontend
-
-1. Create React components and containers.
-2. Implement Redux for state management.
-3. Set up routing with React Router.
-
-### Integrate frontend and backend
-
-1. Use Axios to make API calls from React components to Express server.
-
-### Deploy
-
-1. Build the application using Vite.
-2. Deploy to a cloud provider or web server.
-
----
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-
-## Acknowledgements
-
-Credits to those who have helped and inspired the project.
+## Conclusion
+The Movie Club app aims to recreate the social and interactive experience of a book club for movie enthusiasts. By leveraging modern web technologies and integrating with The Movie Database, the app provides a robust platform for users to discover, watch, and discuss movies in a collaborative environment. The inclusion of stretch goals ensures that the app can evolve to meet the needs of its users, providing additional features and enhancements as development progresses.
