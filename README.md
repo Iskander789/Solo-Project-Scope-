@@ -13,26 +13,26 @@
 
 ### Frontend
 
-- `react`: ^18.2.0
-- `react-dom`: ^18.2.0
-- `react-redux`: ^7.2.2
-- `react-router-dom`: ^5.3.4
-- `redux`: ^4.0.5
-- `redux-logger`: ^3.0.6
-- `redux-saga`: ^1.1.3
+- `react`
+- `react-dom`
+- `react-redux`
+- `react-router-dom`
+- `redux`
+- `redux-logger`
+- `redux-saga`
 
 ### Backend
 
-- `express`: ^4.18.2
-- `pg`: ^8.2.1
+- `express`
+- `pg`
 
 ### Middleware
 
-- `axios`: ^0.21.1
+- `axios`
 
 ### Build Tool
 
-- `vite`: ^5.0.10
+- `vite`
 
 ## Core Features
 
